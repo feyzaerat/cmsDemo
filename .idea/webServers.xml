@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="01d907f8-07b9-4c18-aeb6-29ffb6277adc" name="feyza" url="http://77.245.159.97">
+        <fileTransfer rootFolder="/demo.feyzaerat.com" accessType="FTPS" host="77.245.159.97" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
