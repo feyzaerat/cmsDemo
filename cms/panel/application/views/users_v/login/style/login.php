@@ -1,4 +1,7 @@
+
 <style>
+    /****background-source****/
+    /*https://www.freepik.com/free-vector/white-gold-hexagon-pattern-background_16330847.htm#page=7&query=background&position=0&from_view=keyword"*/
     @import url('https://fonts.googleapis.com/css?family=Tangerine');
     *
 
@@ -14,9 +17,10 @@
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background-image: url("<?php echo base_url("assets/images/login-3.png")?>");
+        background-image: url("<?php echo base_url("assets/images/login-bg.jpg")?>");
         background-position: center;
         background-size: cover;
+
     }
 
 
@@ -36,7 +40,6 @@
             min-height: 100vh;
             background-position: left;
         }
-
         .form {
             position: relative;
             width: 350px;

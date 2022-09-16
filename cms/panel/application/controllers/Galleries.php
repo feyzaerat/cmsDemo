@@ -16,9 +16,7 @@ class Galleries extends VS_Controller
         $this->load->model("VideoModel");
         $this->load->model("FileModel");
 
-       if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+       if(!getActiveUser()){redirect(base_url("Login"));}
     }
 
     public function index(){
@@ -40,9 +38,7 @@ class Galleries extends VS_Controller
 
     public function save(){
 
-        if(!isAllowedWriteModule()){
-            die();
-        }
+        if(!isAllowedWriteModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -82,8 +78,8 @@ class Galleries extends VS_Controller
 
                     $alert = array(
                         "title" => lang('failed'),
-                        "text" => "Galeri Üretilirken problem oluştu. (Klasör içeriği boş değil)",
-                        "type"  => "error"
+                        "text" => lang('there-is-a-problem'),
+                        "type" => "error"
                     );
 
                     // The process of writing the Result of the Action to the Session...
@@ -115,7 +111,7 @@ class Galleries extends VS_Controller
 
                 $alert = array(
                     "title" =>lang('successful'),
-                    "text" => "Kayıt başarılı bir şekilde eklendi",
+                    "text"  => lang('save-successful'),
                     "type"  => "success"
                 );
 
@@ -123,8 +119,8 @@ class Galleries extends VS_Controller
 
                 $alert = array(
                     "title" => lang('failed'),
-                    "text" => "Kayıt Ekleme sırasında bir problem oluştu",
-                    "type"  => "error"
+                    "text" => lang('there-is-a-problem'),
+                    "type" => "error"
                 );
             }
 
@@ -174,9 +170,7 @@ class Galleries extends VS_Controller
 
     public function update($id, $gallery_type, $oldFolderName = ""){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -216,7 +210,7 @@ class Galleries extends VS_Controller
 
                     $alert = array(
                         "title" => lang('failed'),
-                        "text"  => "Galeri Üretilirken problem oluştu. (Klasör içeriği boş değil)",
+                        "text"  => lang('folder-content'),
                         "type"  => "error"
                     );
 
@@ -259,7 +253,7 @@ class Galleries extends VS_Controller
 
                 $alert = array(
                     "title" => lang('failed'),
-                    "text" => "Güncelleme sırasında bir problem oluştu",
+                    "text" =>  lang('there-was-a-problem-occurred-during-the-update'),
                     "type"  => "error"
                 );
 
@@ -342,7 +336,7 @@ class Galleries extends VS_Controller
 
                 $alert = array(
                     "title" =>lang('successful'),
-                    "text" => lang('-delete-successful'),
+                    "text" => lang('delete-successful'),
                     "type"  => "success"
                 );
 
@@ -350,11 +344,9 @@ class Galleries extends VS_Controller
 
                 $alert = array(
                     "title" => lang('failed'),
-                    "text" => "Kayıt silme sırasında bir problem oluştu",
+                    "text"  => lang('there-is-a-problem'),
                     "type"  => "error"
                 );
-
-
             }
 
             $this->session->set_flashdata("alert", $alert);
@@ -365,9 +357,7 @@ class Galleries extends VS_Controller
 
     public function isActiveSetter($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         if($id){
 
@@ -386,9 +376,7 @@ class Galleries extends VS_Controller
 
     public function rankSetter(){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $data = $this->input->post("data");
 
@@ -452,7 +440,7 @@ class Galleries extends VS_Controller
 
             $alert = array(
                 "title" =>lang('successful'),
-                "text" => lang('successful'),
+                "text" => lang('delete-successful'),
                 "type"  => "success"
             );
 
@@ -595,7 +583,14 @@ class Galleries extends VS_Controller
             );
 
         } else {
-            echo "failed";
+            $alert = array(
+                "title" =>lang('failed'),
+                "text" => lang('successful'),
+                "type"  => "error"
+            );
+
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("Galleries"));
         }
 
     }
@@ -695,7 +690,7 @@ class Galleries extends VS_Controller
 
                 $alert = array(
                     "title" =>lang('successful'),
-                    "text" => "Kayıt başarılı bir şekilde eklendi",
+                    "text"   => lang('save-successful'),
                     "type"  => "success"
                 );
 
@@ -703,12 +698,10 @@ class Galleries extends VS_Controller
 
                 $alert = array(
                     "title" => lang('failed'),
-                    "text" => "Kayıt Ekleme sırasında bir problem oluştu",
+                    "text"  => lang('there-is-a-problem'),
                     "type"  => "error"
                 );
             }
-
-            // The process of writing the Result of the Action to the Session...
 
             $this->session->set_flashdata("alert", $alert);
 
@@ -791,7 +784,7 @@ class Galleries extends VS_Controller
 
                 $alert = array(
                     "title" => lang('failed'),
-                    "text" => "Güncelleme sırasında bir problem oluştu",
+                    "text"  => lang('there-was-a-problem-occurred-during-the-update'),
                     "type"  => "error"
                 );
 
@@ -879,7 +872,7 @@ class Galleries extends VS_Controller
 
                 $alert = array(
                     "title" =>lang('successful'),
-                    "text" => "Kayıt başarılı bir şekilde silindi",
+                    "text" => lang('delete-successful'),
                     "type"  => "success"
                 );
 
@@ -887,7 +880,7 @@ class Galleries extends VS_Controller
 
                 $alert = array(
                     "title" => lang('failed'),
-                    "text" => "Kayıt silme sırasında bir problem oluştu",
+                    "text" =>  lang('there-is-a-problem'),
                     "type"  => "error"
                 );
 

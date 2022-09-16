@@ -6,19 +6,13 @@ class Users extends VS_Controller
 
     public function __construct()
     {
-
         parent::__construct();
-
         $this->vFolder = "users_v";
 
         $this->load->model("UserModel");
         $this->load->model("UserRoleModel");
 
-        if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
-
-
+        if(!getActiveUser()){redirect(base_url("Login"));}
     }
 
     public function index(){
@@ -27,11 +21,9 @@ class Users extends VS_Controller
         $user = getActiveUser();
 
         if(isAdmin()){
-
             $where = array();
         }
         else{
-
             $where = array(
                 "id" => $user->id
             );
@@ -50,32 +42,22 @@ class Users extends VS_Controller
 
     public function NewForm(){
 
-        if(!isAllowedWriteModule()){
-            redirect(base_url('Users'));
-        };
+        if(!isAllowedWriteModule()){redirect(base_url('Users'));};
 
         $vData = new stdClass();
 
         $this->load->model("UserRoleModel");
 
-        $vData->user_roles = $this->UserRoleModel->getAll(
-            array(
-                "isActive" => 1
-            ));
-
-
+        $vData->user_roles = $this->UserRoleModel->getAll(array("isActive" => 1));
 
         $vData->vFolder = $this->vFolder;
         $vData->subFolder = "add";
 
         $this->load->view("{$vData->vFolder}/{$vData->subFolder}/index", $vData);
-
     }
 
     public function save(){
-        if(!isAllowedWriteModule()){
-            die();
-        }
+        if(!isAllowedWriteModule()){die();}
         $this->load->library("form_validation");
         $this->load->helper("string");
         if($_FILES["img_url"]["name"] == ""){
@@ -98,15 +80,18 @@ class Users extends VS_Controller
         $this->form_validation->set_rules("full_name", lang('full-name'), "required|trim");
         $this->form_validation->set_rules("email", lang('mail-address'), "required|trim|valid_email|is_unique[users.email]");
         $this->form_validation->set_rules("password", lang('password'), "required|trim|min_length[6]|regex_match[/([a-z]|\s)+/]|regex_match[/([A-Z]|\s)+/]|regex_match[/([A-Z]|\s)+/]|regex_match[/([@ # $ ^ & * ( ) _ + ! { } :]|\s)+/]");
+        $this->form_validation->set_rules("re_password", lang('re-password'), "required|trim|min_length[6]|regex_match[/([a-z]|\s)+/]|regex_match[/([A-Z]|\s)+/]|regex_match[/([A-Z]|\s)+/]|regex_match[/([@ # $ ^ & * ( ) _ + ! { } :]|\s)+/]|matches[password]");
         $this->form_validation->set_rules("user_role_id", lang('user-role'), "required|trim");
 
 
         $this->form_validation->set_message(
             array(
-                "required" => "<b>{field}</b>". lang('must-be-filled'),
-                "valid_email" => lang('enter-valid-mail'),
-                "is_unique" => "<b>{field} </b>". lang('before-used'),
-                "regex_match" => "<b>{field} </b>". lang('pass-has-to-be-char')
+                "required"      => "<b>{field}</b>". lang('must-be-filled'),
+                "valid_email"   => lang('enter-valid-mail'),
+                "is_unique"     => "<b>{field} </b>". lang('before-used'),
+                "regex_match"   => "<b>{field} </b>". lang('pass-has-to-be-char'),
+                "matches"       => lang('does-not-match-password'),
+                "min_length[6]" => "<b>{field}</b>". lang('must-be-at-least-6-char'),
             )
         );
 
@@ -132,15 +117,15 @@ class Users extends VS_Controller
 
                 $insert = $this->UserModel->add(
                     array(
-                        "user_name" => $this->input->post("user_name"),
-                        "full_name" => $this->input->post("full_name"),
-                        "email" => $this->input->post("email"),
-                        "img_url" => $uploadedFile,
-                        "user_role_id"  => $this->input->post("user_role_id"),
-                        "password" => md5($this->input->post("password")),
-                        "isActive" => 1,
-                        "createdAt" => date("Y-m-d H:i:s"),
-                        "createdBy_id"    => $user->id,
+                        "user_name"          => $this->input->post("user_name"),
+                        "full_name"          => $this->input->post("full_name"),
+                        "email"              => $this->input->post("email"),
+                        "img_url"            => $uploadedFile,
+                        "user_role_id"       => $this->input->post("user_role_id"),
+                        "password"           => md5($this->input->post("password")),
+                        "isActive"           => 1,
+                        "createdAt"          => date("Y-m-d H:i:s"),
+                        "createdBy_id"       => $user->id,
                         "created_ip_address" => $this->input->ip_address()
 
                     ));
@@ -245,11 +230,10 @@ class Users extends VS_Controller
               <!-- COPY -->
               <tr>
                 <td bgcolor='#ffffff' align='left' style='padding: 20px 30px 40px 30px; color: #666666;  font-size: 18px; font-weight: 400; line-height: 25px;' >
-                  <p style='margin: 0;'> You can log in to the system with the following information. </p><br>
+                  <p style='margin: 0;'> Dear <b>{$this->input->post('full_name')}, You can log in to the system with the following information. </p><br>
                   <p style='margin: 0;'> Username : <b>{$this->input->post('user_name')}</b> </p>
                   <p style='margin: 0;'> Password : <b>{$this->input->post('password')}</b> </p><br>
-                  <small style='margin: 0; color: red'> Do not share this information with anyone.
-                                             You are responsible for the confidentiality of this information. </small>
+                  <small style='margin: 0; color: red'> Do not share this information with anyone. You are responsible for the confidentiality of this information. </small>
                 </td>
               </tr>
               
@@ -301,7 +285,6 @@ class Users extends VS_Controller
                         "type" => "success",
                         "text" => lang('save-successful')
                     );
-
                 }
                 else {
 
@@ -309,12 +292,8 @@ class Users extends VS_Controller
                         "title" => lang('failed'),
                         "type" => "error",
                         "text" => lang('there-is-a-problem')
-
                     );
-
                 }
-
-
             }
             else {
 
@@ -322,7 +301,6 @@ class Users extends VS_Controller
                     "title" => lang('failed'),
                     "type" => "error",
                     "text" => lang('there-was-a-problem-loading-image')
-
                 );
 
                 $this->session->set_flashdata("alert", $alert);
@@ -383,16 +361,11 @@ class Users extends VS_Controller
     }
 
     public function update($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+        if(!isAllowedUpdateModule()){die();}
+
         $this->load->library("form_validation");
 
-        $oldUser = $this->UserModel->get(
-            array(
-                "id"    => $id
-            )
-        );
+        $oldUser = $this->UserModel->get(array("id"    => $id));
 
         if($oldUser->user_name != $this->input->post("user_name")){
             $this->form_validation->set_rules("user_name", lang('username'), "required|trim|is_unique[users.user_name]");
@@ -437,15 +410,14 @@ class Users extends VS_Controller
                     $uploadedFile = $this->upload->data("file_name");
 
                     $data = array(
-                        "user_name"         => $this->input->post("user_name"),
-                        "full_name"   => $this->input->post("full_name"),
-                        "email"           => $this->input->post("email"),
-                        "user_role_id"           => $this->input->post("user_role_id"),
-                        "img_url" => $uploadedFile,
-                        "updatedAt"     => date("Y-m-d H:i:s"),
-                        "updatedBy_id"  => $user->id,
-                        "updated_ip_address" => $this->input->ip_address()
-
+                        "user_name"           => $this->input->post("user_name"),
+                        "full_name"           => $this->input->post("full_name"),
+                        "email"               => $this->input->post("email"),
+                        "user_role_id"        => $this->input->post("user_role_id"),
+                        "img_url"             => $uploadedFile,
+                        "updatedAt"           => date("Y-m-d H:i:s"),
+                        "updatedBy_id"        => $user->id,
+                        "updated_ip_address"  => $this->input->ip_address()
                     );
 
                 } else {
@@ -458,7 +430,7 @@ class Users extends VS_Controller
 
                     $this->session->set_flashdata("alert", $alert);
 
-                    redirect(base_url("Users/updateform/$id"));
+                    redirect(base_url("Users/updateForm/$id"));
 
                     die();
 
@@ -467,13 +439,13 @@ class Users extends VS_Controller
             } else {
 
                 $data = array(
-                    "user_name"         => $this->input->post("user_name"),
-                    "full_name"   => $this->input->post("full_name"),
-                    "email"           => $this->input->post("email"),
-                    "user_role_id"           => $this->input->post("user_role_id"),
-                    "updatedAt"     => date("Y-m-d H:i:s"),
-                    "updatedBy_id"  => $user->id,
-                    "updated_ip_address" => $this->input->ip_address()
+                    "user_name"           => $this->input->post("user_name"),
+                    "full_name"           => $this->input->post("full_name"),
+                    "email"               => $this->input->post("email"),
+                    "user_role_id"        => $this->input->post("user_role_id"),
+                    "updatedAt"           => date("Y-m-d H:i:s"),
+                    "updatedBy_id"        => $user->id,
+                    "updated_ip_address"  => $this->input->ip_address()
 
                 );
 
@@ -555,13 +527,11 @@ class Users extends VS_Controller
     }
 
     public function updatePassword($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         $this->load->library("form_validation");
 
         $this->form_validation->set_rules("password", lang('password'), "required|trim|min_length[6]|regex_match[/([a-z]|\s)+/]|regex_match[/([A-Z]|\s)+/]|regex_match[/([A-Z]|\s)+/]|regex_match[/([@ # $ ^ & * ( ) _ + ! { } :]|\s)+/]");
-        $this->form_validation->set_rules("re_password",lang('re-password'),"required|trim|min_length[6]|regex_match[/([a-z]|\s)+/]|regex_match[/([A-Z]|\s)+/]|regex_match[/([A-Z]|\s)+/]|regex_match[/([@ # $ ^ & * ( ) _ + ! { } :]|\s)+/]|matches[password]");
+        $this->form_validation->set_rules("re_password",lang('re_password'),"required|trim|min_length[6]|regex_match[/([a-z]|\s)+/]|regex_match[/([A-Z]|\s)+/]|regex_match[/([A-Z]|\s)+/]|regex_match[/([@ # $ ^ & * ( ) _ + ! { } :]|\s)+/]|matches[password]");
 
         $this->form_validation->set_message(
             array(
@@ -663,9 +633,8 @@ class Users extends VS_Controller
     }
 
     public function isActiveSetter($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+        if(!isAllowedUpdateModule()){die();}
+
         if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
@@ -682,9 +651,7 @@ class Users extends VS_Controller
     }
 
     public function rankSetter(){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+        if(!isAllowedUpdateModule()){die();}
 
         $data = $this->input->post("data");
 

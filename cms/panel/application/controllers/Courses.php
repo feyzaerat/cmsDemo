@@ -14,9 +14,7 @@ class Courses extends VS_Controller
         $this->load->model("CourseDetailModel");
         $this->load->model("CourseModel");
 
-       if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+       if(!getActiveUser()){redirect(base_url("Login"));}
 
 
     }
@@ -57,9 +55,7 @@ class Courses extends VS_Controller
 
     public function save(){
 
-        if(!isAllowedWriteModule()){
-            die();
-        }
+               if(!isAllowedWriteModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -115,18 +111,17 @@ class Courses extends VS_Controller
                     $insert = $this->CourseModel->add(
                         array(
 
-                            "title"         => $this->input->post("title"),
-                            "description"   => $this->input->post("description"),
-                            "url"           => convertToSEO($this->input->post("title")),
-                            "by"           => convertToSEO($this->input->post("by")),
-                            "img_url"       => $uploadedFile,
-                            "rank"          => 0,
-                            "isActive"      => 1,
-                            "event_date"     => $this->input->post("event_date"),
-                            "createdAt"    => date("Y-m-d H:i:s"),
-                            "createdBy_id"    => $user->id,
+                            "title"              => $this->input->post("title"),
+                            "description"        => $this->input->post("description"),
+                            "url"                => convertToSEO($this->input->post("title")),
+                            "by"                 => convertToSEO($this->input->post("by")),
+                            "img_url"            => $uploadedFile,
+                            "rank"               => 0,
+                            "isActive"           => 1,
+                            "event_date"         => $this->input->post("event_date"),
+                            "createdAt"          => date("Y-m-d H:i:s"),
+                            "createdBy_id"       => $user->id,
                             "created_ip_address" => $this->input->ip_address()
-
 
                         ));
 
@@ -166,10 +161,6 @@ class Courses extends VS_Controller
                     die();
 
                 }
-
-
-
-
 
             $this->session->set_flashdata("alert", $alert);
 
@@ -218,9 +209,7 @@ class Courses extends VS_Controller
 
     public function update($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -256,17 +245,17 @@ class Courses extends VS_Controller
                     $user = getActiveUser();
 
                     $data = array(
-                        "title"         => $this->input->post("title"),
-                        "description"   => $this->input->post("description"),
-                        "url"           => convertToSEO($this->input->post("title")),
-                        "by"           => convertToSEO($this->input->post("by")),
-                        "img_url"       => $uploadedFile,
-                        "rank"          => 0,
-                        "isActive"      => 1,
-                        "event_date"     => $this->input->post("event_date"),
-                        "updatedAt"     => date("Y-m-d H:i:s"),
-                        "updatedBy_id"  => $user->id,
-                        "updated_ip_address" => $this->input->ip_address()
+                        "title"               => $this->input->post("title"),
+                        "description"         => $this->input->post("description"),
+                        "url"                 => convertToSEO($this->input->post("title")),
+                        "by"                  => convertToSEO($this->input->post("by")),
+                        "img_url"             => $uploadedFile,
+                        "rank"                => 0,
+                        "isActive"            => 1,
+                        "event_date"          => $this->input->post("event_date"),
+                        "updatedAt"           => date("Y-m-d H:i:s"),
+                        "updatedBy_id"        => $user->id,
+                        "updated_ip_address"  => $this->input->ip_address()
                     );
 
                 } else {
@@ -292,10 +281,10 @@ class Courses extends VS_Controller
                     "title"         => $this->input->post("title"),
                     "description"   => $this->input->post("description"),
                     "url"           => convertToSEO($this->input->post("title")),
-                    "by"           => convertToSEO($this->input->post("by")),
+                    "by"            => convertToSEO($this->input->post("by")),
                     "rank"          => 0,
                     "isActive"      => 1,
-                    "event_date"     => $this->input->post("event_date"),
+                    "event_date"    => $this->input->post("event_date"),
                     "updatedAt"     => date("Y-m-d H:i:s"),
                     "updatedBy_id"  => $user->id,
                     "updated_ip_address" => $this->input->ip_address()
@@ -326,8 +315,6 @@ class Courses extends VS_Controller
                 );
             }
 
-            // The process of writing the Result of the Action to the Session...
-
             $this->session->set_flashdata("alert", $alert);
 
             redirect(base_url("Courses"));
@@ -354,109 +341,6 @@ class Courses extends VS_Controller
 
     }
 
-    public function detailForm($id){
-
-        $vData = new stdClass();
-
-
-        $items=$this->CourseModel->get(array("id"=>$id));
-
-        $vData->vFolder = $this->vFolder;
-        $vData->subFolder = "detail";
-        $vData->items = $items;
-
-        $this->load->view("{$vData->vFolder}/{$vData->subFolder}/index", $vData);
-
-
-
-    }
-
-    public function updateDetail($id){
-
-        $this->load->library("form_validation");
-
-
-        $this->form_validation->set_rules("price", lang('price'), "required|trim");
-
-        $this->form_validation->set_message(
-            array(
-                "required"  => "<b>{field} </b>". lang('must-be-filled')
-            )
-        );
-
-      
-        $validate = $this->form_validation->run();
-
-        if($validate) {
-
-            $course_terms=explode(';',$this->input->post('course_terms'));
-            $course_content=explode(';',$this->input->post('course_content'));
-            $course_docs=explode(';',$this->input->post('course_document'));
-            $course_time=explode(';',$this->input->post('course_time'));
-
-
-
-                    $data = array(
-
-                        "course_price"  => $this->input->post("price"),
-                        "course_terms"  =>  $this->input->post("course_terms"),
-                        "course_content" =>  $this->input->post("course_content"),
-                        "course_document" =>  $this->input->post("course_document"),
-                        "course_time"   =>  $this->input->post("course_time"),
-                        "updatedAt"     => date("Y-m-d H:i:s")
-                    );
-
-            
-           
-
-            $update = $this->CourseModel->update(array("id" => $id), $data);
-
-           
-            if ($update) {
-
-                $alert = array(
-                    "title" =>lang('successful'),
-                    "text" => lang('update-successful'),
-                    "type" => "success"
-                );
-
-            } else {
-
-                $alert = array(
-                    "title" => lang('failed'),
-                    "text" => lang('a-problem-occurred-during-the-update'),
-                    "type" => "error"
-                );
-            }
-
-            // The process of writing the Result of the Action to the Session...
-
-            $this->session->set_flashdata("alert", $alert);
-
-            redirect(base_url("Courses"));
-
-        } else {
-
-            $vData = new stdClass();
-
-            
-            $vData->vFolder = $this->vFolder;
-            $vData->subFolder = "detail";
-            $vData->form_error = true;
-
-
-            
-            $vData->items = $this->CourseModel->get(
-                array(
-                    "id"    => $id,
-                )
-            );
-
-            $this->load->view("{$vData->vFolder}/{$vData->subFolder}/index", $vData);
-        }
-
-    }
-    
     public function delete($id){
 
         if(!isAllowedDeleteModule()){
@@ -491,9 +375,7 @@ class Courses extends VS_Controller
 
     public function isActiveSetter($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         if($id){
 
@@ -512,9 +394,7 @@ class Courses extends VS_Controller
 
     public function rankSetter(){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         $data = $this->input->post("data");
 
         parse_str($data, $order);

@@ -13,9 +13,7 @@ class Email_settings extends VS_Controller
 
         $this->load->model("EmailSettingModel");
 
-       if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+       if(!getActiveUser()){redirect(base_url("Login"));}
 
 
     }
@@ -53,9 +51,7 @@ class Email_settings extends VS_Controller
 
     public function save(){
 
-        if(!isAllowedWriteModule()){
-            die();
-        }
+        if(!isAllowedWriteModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -85,17 +81,17 @@ class Email_settings extends VS_Controller
             $insert = $this->EmailSettingModel->add(
                         array(
 
-                            "protocol"         => $this->input->post("protocol"),
-                            "host"   => $this->input->post("host"),
+                            "protocol"       => $this->input->post("protocol"),
+                            "host"           => $this->input->post("host"),
                             "port"           => $this->input->post("port"),
                             "password"       => $this->input->post("password"),
                             "user"           => $this->input->post("user"),
-                            "user_name"           => $this->input->post("user_name"),
+                            "user_name"      => $this->input->post("user_name"),
                             "from"           => $this->input->post("from"),
-                            "to"           => $this->input->post("to"),
-                            "isActive"      => 1,
-                            "createdAt"     => date("Y-m-d H:i:s"),
-                            "createdBy_id"    => $user->id,
+                            "to"             => $this->input->post("to"),
+                            "isActive"       => 1,
+                            "createdAt"      => date("Y-m-d H:i:s"),
+                            "createdBy_id"   => $user->id,
                             "created_ip_address" => $this->input->ip_address()
 
                         ));
@@ -167,9 +163,7 @@ class Email_settings extends VS_Controller
 
     public function update($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -206,16 +200,16 @@ class Email_settings extends VS_Controller
                 array(
 
 
-                    "protocol"         => $this->input->post("protocol"),
-                    "host"   => $this->input->post("host"),
+                    "protocol"       => $this->input->post("protocol"),
+                    "host"           => $this->input->post("host"),
                     "port"           => $this->input->post("port"),
                     "password"       => $this->input->post("password"),
                     "user"           => $this->input->post("user"),
-                    "user_name"           => $this->input->post("user_name"),
+                    "user_name"      => $this->input->post("user_name"),
                     "from"           => $this->input->post("from"),
-                    "to"           => $this->input->post("to"),
-                    "updatedAt"     => date("Y-m-d H:i:s"),
-                    "updatedBy_id"  => $user->id,
+                    "to"             => $this->input->post("to"),
+                    "updatedAt"      => date("Y-m-d H:i:s"),
+                    "updatedBy_id"   => $user->id,
                     "updated_ip_address" => $this->input->ip_address()
 
 
@@ -233,9 +227,9 @@ class Email_settings extends VS_Controller
             }
             else{
                 $alert = array(
-                    "title" => "Ooppss !!",
-                    "text" => lang('there-was-a-problem-update'),
-                    "type" => "error"
+                    "title" => lang('failed'),
+                    "text"  => lang('there-was-a-problem-update'),
+                    "type"  => "error"
                 );
             }
             $this->session->set_flashdata("alert", $alert);
@@ -301,9 +295,7 @@ class Email_settings extends VS_Controller
 
     public function isActiveSetter($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         if($id){
 
@@ -322,9 +314,7 @@ class Email_settings extends VS_Controller
 
     public function rankSetter(){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $data = $this->input->post("data");
 

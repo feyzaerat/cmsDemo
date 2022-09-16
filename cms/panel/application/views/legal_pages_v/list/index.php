@@ -37,7 +37,6 @@
         <!-- /#app-footer -->
     </main>
     <!--========== END app main -->
-
     <?php $this->load->view("includes/i_scr"); ?>
 
 </body>

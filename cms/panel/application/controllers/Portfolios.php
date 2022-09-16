@@ -15,9 +15,7 @@ class Portfolios extends VS_Controller
         $this->load->model("PortfolioCategoryModel");
         $this->load->model("PortfolioimageModel");
 
-       if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+       if(!getActiveUser()){redirect(base_url("Login"));}
 
     }
 
@@ -61,9 +59,7 @@ class Portfolios extends VS_Controller
 
     public function save(){
 
-        if(!isAllowedWriteModule()){
-            die();
-        }
+               if(!isAllowedWriteModule()){die();}
         $this->load->library("form_validation");
 
         $this->form_validation->set_rules("title", lang('title'), "required|trim");
@@ -95,7 +91,7 @@ class Portfolios extends VS_Controller
                     "isActive"      => 1,
                     "finishedAt"    => $this->input->post("finishedAt"),
                     "createdAt"     => date("Y-m-d H:i:s"),
-                    "createdBy_id"    => $user->id,
+                    "createdBy_id"       => $user->id,
                     "created_ip_address" => $this->input->ip_address()
                     )
             );
@@ -173,9 +169,7 @@ class Portfolios extends VS_Controller
 
     public function update($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -220,7 +214,7 @@ class Portfolios extends VS_Controller
                 $alert = array(
                     "title" => lang('successful'),
                     "type" => "success",
-                    "text" => "Kayıt başarılı bir şekilde güncellendi !"
+                    "text" => lang('delete-successful'),
                 );
 
             } else {
@@ -326,9 +320,7 @@ class Portfolios extends VS_Controller
     }
 
     public function isActiveSetter($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
@@ -345,9 +337,7 @@ class Portfolios extends VS_Controller
     }
 
     public function imageIsActiveSetter($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
@@ -364,9 +354,7 @@ class Portfolios extends VS_Controller
     }
 
     public function isCoverSetter($id, $parent_id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         if($id && $parent_id){
 
             $isCover = ($this->input->post("data") === "true") ? 1 : 0;
@@ -411,9 +399,7 @@ class Portfolios extends VS_Controller
     }
 
     public function rankSetter(){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $data = $this->input->post("data");
 
@@ -439,9 +425,7 @@ class Portfolios extends VS_Controller
 
     public function imageRankSetter(){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         $data = $this->input->post("data");
 
         parse_str($data, $order);
@@ -515,8 +499,16 @@ class Portfolios extends VS_Controller
 
 
         } else {
-            echo "islem basarisiz";
+            $alert = array(
+                "title" => lang('failed'),
+                "type" => "error",
+                "text" => lang('there-is-a-problem')
+            );
+
         }
+        $this->session->set_flashdata("alert", $alert);
+        redirect(base_url("Portfolios"));
+        
 
     }
 

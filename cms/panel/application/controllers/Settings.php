@@ -13,9 +13,7 @@ class Settings extends VS_Controller
 
         $this->load->model("SettingsModel");
 
-        if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+        if(!getActiveUser()){redirect(base_url("Login"));}
 
 
     }
@@ -57,9 +55,7 @@ class Settings extends VS_Controller
 
     public function save()
     {
-        if(!isAllowedWriteModule()){
-            die();
-        }
+               if(!isAllowedWriteModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -120,8 +116,7 @@ class Settings extends VS_Controller
                         "company_name"         => $this->input->post("company_name"),
                         "phone_1"              => $this->input->post("phone_1"),
                         "phone_2"              => $this->input->post("phone_2"),
-                        "fax"                => $this->input->post("fax"),
-                        
+                        "fax"                  => $this->input->post("fax"),
                         "address"              => $this->input->post("address"),
                         "about_us"             => $this->input->post("about_us"),
                         "mission"              => $this->input->post("mission"),
@@ -133,8 +128,8 @@ class Settings extends VS_Controller
                         "linkedin"             => $this->input->post("linkedin"),
                         "logo"                 => $uploadedFile,
                         "createdAt"            => date("Y-m-d H:i:s"),
-                        "createdBy_id"    => $user->id,
-                        "created_ip_address" => $this->input->ip_address()
+                        "createdBy_id"         => $user->id,
+                        "created_ip_address"   => $this->input->ip_address()
 
                     ));
 
@@ -227,9 +222,7 @@ class Settings extends VS_Controller
 
     public function update($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         $this->load->library("form_validation");
 
 
@@ -239,7 +232,7 @@ class Settings extends VS_Controller
 
         $this->form_validation->set_message(
             array(
-                "required"  => "<b>{field}</b>". lang('must-be-filled'),
+                "required"  => "<b>{field}</b> ". lang('must-be-filled'),
                 "valid_email"=> lang('enter-valid-mail')
 
             )
@@ -271,7 +264,7 @@ class Settings extends VS_Controller
                         "company_name"         => $this->input->post("company_name"),
                         "phone_1"              => $this->input->post("phone_1"),
                         "phone_2"              => $this->input->post("phone_2"),
-                        "fax"                => $this->input->post("fax"),
+                        "fax"                  => $this->input->post("fax"),
                         "address"              => $this->input->post("address"),
                         "about_us"             => $this->input->post("about_us"),
                         "mission"              => $this->input->post("mission"),
@@ -283,8 +276,8 @@ class Settings extends VS_Controller
                         "linkedin"             => $this->input->post("linkedin"),
                         "logo"                 => $uploadedFile,
                         "updatedAt"            => date("Y-m-d H:i:s"),
-                        "updatedBy_id"  => $user->id,
-                        "updated_ip_address" => $this->input->ip_address()
+                        "updatedBy_id"         => $user->id,
+                        "updated_ip_address"   => $this->input->ip_address()
 
                     );
 
@@ -311,7 +304,7 @@ class Settings extends VS_Controller
                     "company_name"         => $this->input->post("company_name"),
                     "phone_1"              => $this->input->post("phone_1"),
                     "phone_2"              => $this->input->post("phone_2"),
-                    "fax"                => $this->input->post("fax"),
+                    "fax"                  => $this->input->post("fax"),
                     "address"              => $this->input->post("address"),
                     "about_us"             => $this->input->post("about_us"),
                     "mission"              => $this->input->post("mission"),
@@ -322,8 +315,8 @@ class Settings extends VS_Controller
                     "twitter"              => $this->input->post("twitter"),
                     "linkedin"             => $this->input->post("linkedin"),
                     "updatedAt"            => date("Y-m-d H:i:s"),
-                    "updatedBy_id"  => $user->id,
-                    "updated_ip_address" => $this->input->ip_address()
+                    "updatedBy_id"         => $user->id,
+                    "updated_ip_address"   => $this->input->ip_address()
 
                 );
 
@@ -351,13 +344,11 @@ class Settings extends VS_Controller
                 );
             }
 
-            //Session Update İslemi
 
             $settings = $this->SettingsModel->get();
             $this->session->set_userdata("settings", $settings);
 
 
-            // The process of writing the Result of the Action to the Session...
 
             $this->session->set_flashdata("alert", $alert);
 

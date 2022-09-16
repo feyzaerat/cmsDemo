@@ -37,4 +37,21 @@ class VS_Model extends CI_Model{
         else
             return false;
     }
+
+    public function count($where = array()){
+        return $this->db->where($where)->count_all($this->dataTable);
+    }
+    public function countToday(){
+        $users = getActiveUser();
+
+
+            $this->db->select('createdAt');
+            $this->db->from($this->dataTable);
+            $this->db->like('createdAt', date("Y-m-d"));
+
+            return $this->db->count_all_results();
+
+
+    }
+
 }

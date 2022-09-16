@@ -17,7 +17,7 @@
                 </div>
 
             <?php } else { ?>
-
+            <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped content-container table-rounded">
                     <thead>
                         <th><i class="fa fa-reorder"></i></th>
@@ -77,7 +77,7 @@
                     </tbody>
 
                 </table>
-
+            </div>
             <?php } ?>
 
         </div><!-- .widget -->

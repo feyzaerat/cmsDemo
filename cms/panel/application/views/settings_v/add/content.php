@@ -13,7 +13,6 @@
             <div class="m-b-lg nav-tabs-horizontal">
                 <!-- tabs list -->
                 <ul class="nav nav-tabs" role="tablist">
-
                     <li role="presentation" class="active"><a href="#tab-1" aria-controls="tab-3" role="tab" data-toggle="tab"><?php echo lang('site-info')?></a></li>
                     <li role="presentation"><a href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab"><?php echo lang('address')?></a></li>
                     <li role="presentation"><a href="#tab-3" aria-controls="tab-3" role="tab" data-toggle="tab"><?php echo lang('about-us')?></a></li>
@@ -22,8 +21,6 @@
                     <li role="presentation"><a href="#tab-6"  aria-controls="tab-6" role="tab" data-toggle="tab"><?php echo lang('social-media')?></a></li>
                     <li role="presentation"><a href="#tab-7"  aria-controls="tab-7" role="tab" data-toggle="tab"><?php echo lang('logo')?></a></li>
                     <li role="presentation"><a href="#tab-8"  aria-controls="tab-8" role="tab" data-toggle="tab"><?php echo lang('footer')?></a></li>
-
-
                 </ul><!-- .nav-tabs -->
 
                 <!-- Tab panes -->

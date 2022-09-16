@@ -4,7 +4,7 @@
 
 
 <div class="form">
-    <div><img class="icon" src="<?php echo base_url('assets/images/fke.ico')?>"></div>
+    <div><img class="icon" src="<?php echo base_url('assets/images/fkeo-logo-light.png')?>"></div>
     <h2><?php echo lang('reset-password')?></h2>
 
     <div class="input">

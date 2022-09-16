@@ -5,13 +5,13 @@
     </div>
 
 <?php } else { ?>
-
-    <table class="table table-bordered table-striped table-hover pictures_list">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover pictures_list">
         <thead>
         <th><i class="fa fa-reorder"></i></th>
         <th>#id</th>
         <th><?php echo lang('image')?></th>
-        <th>Dosya Yolu / Adı</th>
+        <th><?php echo lang('folder-path-name')?></th>
         <th><?php echo lang('status')?></th>
         <th style="width: 5%"><?php echo lang('actions')?></th>
         </thead>
@@ -58,4 +58,5 @@
         </tbody>
 
     </table>
+    </div>
 <?php } ?>

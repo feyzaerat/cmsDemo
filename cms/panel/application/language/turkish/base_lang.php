@@ -5,10 +5,20 @@ $lang['notAbleToBlank']   =   '%s field can\'t be empty!';
 
 //language select
 $lang['langTurkish']   =   'Türkçe';
-$lang['langEnglish']   =   'English';
+$lang['langEnglish']   =   'İngilizce';
+$lang['langGerman']    =   'Almanca';
+$lang['langFrench']    =   'Fransızca';
 $lang['change-language']   =   'Dil Değiştir';
 //
 $lang['page-title']        =   'İçerik Yönetim Paneli';
+
+//email
+
+$lang['sent-mail-success']       =   'E-Posto Başarılı Bir Şekilde Gönderildi..';
+$lang['sent-reset-mail-success'] =   'Şifreniz Başarılı Bir Şekilde Sıfırlandı. Lütfen E-Posta Kutunuzu Kontrol Ediniz..';
+$lang['sent-failed']             =   'E-Posta Gönderilirken Bir Problem Oluştu !';
+$lang['no-such-user']            =   'Böyle Bir Kullanıcı Bulunamadı!!!';
+
 
 
 //alerts
@@ -24,12 +34,21 @@ $lang['delete-photo-successful'] =   'Görsel Silindi !';
 $lang['there-is-a-problem']      =   'Dikkat ! Bir Sorun Oluştu ..';
 $lang['there-was-a-problem-loading-image']      =   'Dikkat ! Görsel Yükleme Sırasında Bir Sorun Oluştu !';
 $lang['there-was-a-problem-occurred-during-the-update']      =   'Dikkat !  Güncelleme Sırasında Bir Sorun Oluştu !';
+$lang['folder-content']      =   'Ooppss ! Klasör İçeriği Boş Değil !';
+$lang['folder-path-name']      =   'Dosya Yolu / Adı !';
+
 
 
 //form fields
 $lang['labelUsername']   =   'User ID';
 $lang['labelPassword']   =   'Password';
 $lang['current-ip']      =   'Mevcut IP adresi';
+$lang['must-be-at-least-6-char']  =   'En az 6 karakter olmalıdır';
+$lang['must-be-filled']  =   ' alanı doldurulmalıdır.';
+$lang['before-used']  =   ' daha önce kullanılmış.';
+$lang['pass-has-to-be-char']  =   ' en az 1 büyük harf, küçük harf, sayı ve karakter içermelidir.';
+$lang['does-not-match-password']  =   ' Şifreler eşleşmiyor.';
+
 
 //form placeholders
 $lang['phLoginUsername']   =   'Type your user ID';
@@ -96,6 +115,8 @@ $lang['delete']        =   'Silme';
 
 //Head of Contents
 $lang['list-of']       =   'Listesi';
+$lang['activities-of-today']  =   'Bugün eklenen veriler';
+$lang['total']  =   'Toplam';
 $lang['change-of-perm']=   ' için Yetki Değişikliği';
 $lang['is-updating']     =   'Kaydını Düzenliyorsunuz';
 $lang['no-data']       =   'Eklemek için lütfen buraya tıklayın.';
@@ -104,7 +125,7 @@ $lang['click-here']    =   'Buraya Tıkla ';
 $lang['for-add']       =   'Eklemek için';
 $lang['add-new-brand'] =   'Yeni Marka Ekle';
 $lang['add-new-course'] =   'Yeni Eğitim Ekle';
-$lang['add-new-user']   =   'Yeni Marka Ekle';
+$lang['add-new-user']   =   'Yeni Kullanıcı Ekle';
 $lang['add-new-gallery']   =   'Yeni Galeri Ekle';
 $lang['add-new-product']   =   'Yeni Ürün Ekle';
 $lang['add-new-service']   =   'Yeni Hizmet Ekle';

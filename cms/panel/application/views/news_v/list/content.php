@@ -14,7 +14,7 @@
                     <p><?php echo lang('no-data')?> <?php echo lang('for-add')?> <a href="<?php echo base_url("add-news"); ?>"><?php echo lang('click-here')?></a></p>
                 </div>
             <?php } else { ?>
-
+            <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped content-container table-rounded">
                     <thead>
                         <th><i class="fa fa-reorder"></i></th>
@@ -80,6 +80,7 @@
                         <?php } ?>
                     </tbody>
                 </table>
+            </div>
             <?php } ?>
         </div><!-- .widget -->
     </div><!-- END column -->

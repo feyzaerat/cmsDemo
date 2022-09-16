@@ -13,9 +13,7 @@ class Portfolio_categories extends VS_Controller
 
         $this->load->model("PortfolioCategoryModel");
 
-        if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+        if(!getActiveUser()){redirect(base_url("Login"));}
 
 
     }
@@ -52,9 +50,7 @@ class Portfolio_categories extends VS_Controller
 
     public function save(){
 
-        if(!isAllowedWriteModule()){
-            die();
-        }
+               if(!isAllowedWriteModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -62,7 +58,7 @@ class Portfolio_categories extends VS_Controller
 
         $this->form_validation->set_message(
             array(
-                "required"  => "<b>{field}</b> lang('must-be-filled')"
+                "required"  => "<b>{field} </b>". lang('must-be-filled')
             )
         );
 
@@ -74,10 +70,10 @@ class Portfolio_categories extends VS_Controller
                 $insert = $this->PortfolioCategoryModel->add(
                     array(
 
-                        "title"         => $this->input->post("title"),
-                        "isActive"      => 1,
-                        "createdAt"     => date("Y-m-d H:i:s"),
-                        "createdBy_id"    => $user->id,
+                        "title"              => $this->input->post("title"),
+                        "isActive"           => 1,
+                        "createdAt"          => date("Y-m-d H:i:s"),
+                        "createdBy_id"       => $user->id,
                         "created_ip_address" => $this->input->ip_address()
 
                     ));
@@ -153,9 +149,7 @@ class Portfolio_categories extends VS_Controller
 
     public function update($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -164,7 +158,7 @@ class Portfolio_categories extends VS_Controller
 
         $this->form_validation->set_message(
             array(
-                "required"  => "<b>{field}</b> lang('must-be-filled')"
+                "required"  => "<b>{field}</b> ". lang('must-be-filled')
             )
         );
 
@@ -175,9 +169,9 @@ class Portfolio_categories extends VS_Controller
         if($validate) {
 
                 $data = array(
-                    "title" => $this->input->post("title"),
-                    "updatedAt"     => date("Y-m-d H:i:s"),
-                    "updatedBy_id"  => $user->id,
+                    "title"              => $this->input->post("title"),
+                    "updatedAt"          => date("Y-m-d H:i:s"),
+                    "updatedBy_id"       => $user->id,
                     "updated_ip_address" => $this->input->ip_address()
                 );
 
@@ -202,7 +196,6 @@ class Portfolio_categories extends VS_Controller
                 );
             }
 
-            // The process of writing the Result of the Action to the Session...
 
             $this->session->set_flashdata("alert", $alert);
 
@@ -266,9 +259,7 @@ class Portfolio_categories extends VS_Controller
     }
 
     public function isActiveSetter($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;

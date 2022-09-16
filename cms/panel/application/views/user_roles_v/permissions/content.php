@@ -11,9 +11,8 @@
         <div class="widget">
             <div class="widget-body">
                 <form action="<?php echo base_url("User_roles/updatePermissions/$item->id"); ?>" method="post">
-
+                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover">
-
                         <thead>
                         <th class="text-center"><?php echo lang('module-name')?></th>
                         <th class="text-center"><?php echo lang('view')?></th>
@@ -21,7 +20,6 @@
                         <th class="text-center"><?php echo lang('edit')?></th>
                         <th class="text-center"><?php echo lang('delete')?></th>
                         </thead>
-
                         <tbody>
                         <?php foreach( getControllerList() as $controllerName ){?>
                         <tr>
@@ -52,7 +50,7 @@
                         </tbody>
 
                     </table><br/>
-
+                 </div>
                     <?php if(isDemoUpdate()){ ?>
                     <button type="submit" class="btn btn-primary btn-md btn-outline"><?php echo lang('update')?></button>
                     <?php }?>

@@ -4,12 +4,22 @@
 $lang['notAbleToBlank']   =   '%s field can\'t be empty!';
 
 //language select
-$lang['langTurkish']   =   'Türkçe';
+$lang['langTurkish']   =   'Turkish';
 $lang['langEnglish']   =   'English';
+$lang['langGerman']        =   'German';
+$lang['langFrench']    =   'French';
 $lang['change-language']   =   'Change Language';
 
 //
 $lang['page-title']        =   'Content Management Panel';
+
+
+//email
+$lang['sent-mail-success']       =   'Email sent successfully.';
+$lang['sent-reset-mail-success'] =   'Your Password Has Been Reset Successfully. Please Check Your E-Mail Box..';
+$lang['sent-failed']             =   'A Problem Occurred While Sending E-Mail!';
+$lang['no-such-user']            =   'No such user found!!!';
+
 
 //alerts
 $lang['successful']        =   'Successful !';
@@ -24,6 +34,8 @@ $lang['delete-photo-successful'] =   'Photo Deleted Successfully !';
 $lang['there-is-a-problem']      =   'Ooppss ! There is a problem !';
 $lang['there-was-a-problem-loading-image']      =   'Ooppss ! There was a problem Loading the image !';
 $lang['there-was-a-problem-occurred-during-the-update']      =   'Ooppss ! There was a problem occurred during the update !';
+$lang['folder-content']      =   'Ooppss ! Folder content is not empty !';
+$lang['folder-path-name']      =   'Folder Path / Name !';
 
 
 
@@ -31,6 +43,13 @@ $lang['there-was-a-problem-occurred-during-the-update']      =   'Ooppss ! There
 $lang['labelUsername']   =   'User ID';
 $lang['labelPassword']   =   'Password';
 $lang['current-ip']      =   'Current IP Address';
+$lang['must-be-at-least-6-char']  =   'must be at least 6 characters in length';
+$lang['must-be-filled']  =   ' must be filled.';
+$lang['before-used']  =   ' before used.';
+$lang['pass-has-to-be-char']  =   ' must contain at least 1 uppercase letter, lowercase letter, number and character.';
+$lang['does-not-match-password']  =   ' Does not match the password.';
+
+
 
 //form placeholders
 $lang['phLoginUsername']   =   'Type your user ID';
@@ -96,6 +115,8 @@ $lang['delete']        =   'Delete';
 
 //Head of Contents
 $lang['list-of']        =   'List of';
+$lang['activities-of-today']  =   'Data added today';
+$lang['total']  =   'Total';
 $lang['change-of-perm'] =   ' / Change of Permission';
 $lang['is-updating']      =   'is Updating';
 $lang['no-data']        =   'No data here.';

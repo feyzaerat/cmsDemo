@@ -5,7 +5,7 @@
     </div>
 
 <?php } else { ?>
-
+    <div class="table-responsive">
     <table class="table table-bordered table-striped table-hover pictures_list">
         <thead>
         <th><i class="fa fa-reorder"></i></th>
@@ -64,4 +64,5 @@
         </tbody>
 
     </table>
+    </div>
 <?php } ?>

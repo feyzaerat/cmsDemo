@@ -17,7 +17,7 @@
                 </div>
 
             <?php } else { ?>
-
+            <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped content-container table-rounded">
                     <thead>
                         <th style="width: 1%">#id</th>
@@ -67,7 +67,7 @@
                     </tbody>
 
                 </table>
-
+            </div>
             <?php } ?>
 
         </div><!-- .widget -->

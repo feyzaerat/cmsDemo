@@ -1,4 +1,7 @@
 <?php
+function cdn(){
+    return base_url();
+}
 
 function convertToSEO($text){
 
@@ -15,9 +18,9 @@ function lang($ref){
     $lang   =   $x->session->userdata('lang'); //read language identifier
     if (($lang == null) || ($lang == '')){ //if language identifier is blank
         $lang   =   new stdClass();
-        $lang->langCode =   'tr';
-        $lang->language =   'turkish';
-        $x->session->set_userdata('lang', $lang); //set default language is turkish
+        $lang->langCode =   'en';
+        $lang->language =   'english';
+        $x->session->set_userdata('lang', $lang); //set default language is english
     }
     $x->lang->load('base',      $lang->language); //set language is selected
     return ($x->lang->line($ref)) ? $x->lang->line($ref) : $ref; //return translation
@@ -27,9 +30,9 @@ function language(){
     $lang   =   $x->session->userdata('lang'); //read language identifier
     if (($lang == null) || ($lang == '')){ //if language identifier is blank
         $lang   =   new stdClass();
-        $lang->langCode =   'tr';
-        $lang->language =   'turkish';
-        $x->session->set_userdata('lang', $lang); //set default language is turkish
+        $lang->langCode =   'en';
+        $lang->language =   'english';
+        $x->session->set_userdata('lang', $lang); //set default language is english
     }
     return $x->session->userdata('lang');
 }
@@ -261,6 +264,38 @@ function upload_picture($file, $uploadPath,$name){
         $simpleImage
             ->fromFile($file)
             ->thumbnail('64','64','center')
+            ->toFile("{$uploadPath}/$name", null, 75);
+
+    } catch(Exception $err) {
+        $error =  $err->getMessage();
+        $upload_error = true;
+    }
+
+    if($upload_error){
+        echo $error;
+    } else {
+        return true;
+    }
+
+
+}
+function upload_Model($file, $uploadPath,$name){
+
+    $t = &get_instance();
+    $t->load->library("simpleimagelib");
+
+
+    if(!is_dir("{$uploadPath}")){
+        mkdir("{$uploadPath}");
+    }
+
+    $upload_error = false;
+    try {
+
+        $simpleModel = $t->simpleimagelib->get_simple_image_instance();
+
+        $simpleModel
+            ->fromFile($file)
             ->toFile("{$uploadPath}/$name", null, 75);
 
     } catch(Exception $err) {

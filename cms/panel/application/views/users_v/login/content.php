@@ -2,7 +2,7 @@
 <form action="<?php echo base_url('Login/DoLogin')?>" method="post">
 
 <div class="form">
-    <div><img class="icon" src="<?php  echo base_url('assets/images/fke.ico')?>"></div>
+    <div><img class="icon" src="<?php  echo base_url('assets/images/fkeo-logo-light.png')?>"></div>
     <h2><?php echo lang('login')?></h2>
 
     <div class="input">
@@ -18,7 +18,7 @@
             <label><?php echo lang('password')?></label>
             <input type="password" name="password" placeholder=&#11044&#11044&#11044&#11044&#11044&#11044&#11044&#11044&#11044&#11044&#11044>
             <?php  if (isset($form_error)){?>
-                <small class="pull-right input-form-error "><?php  echo form_error("password");?></small>
+                <small class="pull-right input-form-error "><?php echo form_error("password");?></small>
             <?php }?>
 
         </div>

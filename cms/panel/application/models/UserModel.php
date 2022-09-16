@@ -10,7 +10,6 @@ class UserModel extends VS_Model {
 
 
 
-
     /*public function GetUserData()
 
     {

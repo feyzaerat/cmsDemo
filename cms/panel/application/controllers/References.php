@@ -13,9 +13,7 @@ class References extends VS_Controller
 
         $this->load->model("ReferenceModel");
 
-       if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+       if(!getActiveUser()){redirect(base_url("Login"));}
 
 
     }
@@ -53,9 +51,7 @@ class References extends VS_Controller
 
     public function save(){
 
-        if(!isAllowedWriteModule()){
-            die();
-        }
+               if(!isAllowedWriteModule()){die();}
         $this->load->library("form_validation");
 
             if($_FILES["img_url"]["name"] == ""){
@@ -207,9 +203,7 @@ class References extends VS_Controller
     }
 
     public function update($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+         if(!isAllowedUpdateModule()){die();}
         $this->load->library("form_validation");
 
 
@@ -303,7 +297,6 @@ class References extends VS_Controller
                 );
             }
 
-            // The process of writing the Result of the Action to the Session...
 
             $this->session->set_flashdata("alert", $alert);
 
@@ -332,9 +325,7 @@ class References extends VS_Controller
     }
 
     public function delete($id){
-        if(!isAllowedDeleteModule()){
-            redirect(base_url($this->router->fetch_class()));
-        }
+        if(!isAllowedDeleteModule()){redirect(base_url($this->router->fetch_class()));}
         $delete = $this->ReferenceModel->delete(
             array(
                 "id"    => $id
@@ -362,9 +353,7 @@ class References extends VS_Controller
     }
 
     public function isActiveSetter($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+        if(!isAllowedUpdateModule()){die();}
         if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
@@ -382,9 +371,7 @@ class References extends VS_Controller
 
     public function rankSetter(){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+        if(!isAllowedUpdateModule()){die();}
         $data = $this->input->post("data");
 
         parse_str($data, $order);

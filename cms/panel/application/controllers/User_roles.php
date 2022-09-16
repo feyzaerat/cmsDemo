@@ -13,9 +13,7 @@ class User_roles extends VS_Controller
 
         $this->load->model("UserRoleModel");
 
-        if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+        if(!getActiveUser()){redirect(base_url("Login"));}
 
 
     }
@@ -53,9 +51,7 @@ class User_roles extends VS_Controller
 
     public function save(){
 
-        if(!isAllowedWriteModule()){
-            die();
-        }
+               if(!isAllowedWriteModule()){die();}
         $this->load->library("form_validation");
 
         $this->form_validation->set_rules("title", lang('title'), "required|trim");
@@ -77,7 +73,7 @@ class User_roles extends VS_Controller
                         "title"         => $this->input->post("title"),
                         "isActive"      => 1,
                         "createdAt"     => date("Y-m-d H:i:s"),
-                        "createdBy_id"    => $user->id,
+                        "createdBy_id"       => $user->id,
                         "created_ip_address" => $this->input->ip_address()
 
                     ));
@@ -154,9 +150,7 @@ class User_roles extends VS_Controller
 
     public function update($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -177,9 +171,9 @@ class User_roles extends VS_Controller
 
             $update = $this->UserRoleModel->update(array("id" => $id),
                  array(
-                     "title" => $this->input->post("title"),
-                     "updatedAt"     => date("Y-m-d H:i:s"),
-                     "updatedBy_id"  => $user->id,
+                     "title"              => $this->input->post("title"),
+                     "updatedAt"          => date("Y-m-d H:i:s"),
+                     "updatedBy_id"       => $user->id,
                      "updated_ip_address" => $this->input->ip_address()
                  )
             );
@@ -233,6 +227,7 @@ class User_roles extends VS_Controller
         if(!isAllowedDeleteModule()){
             redirect(base_url($this->router->fetch_class()));
         }
+
         $delete = $this->UserRoleModel->delete(
             array(
                 "id"    => $id
@@ -260,9 +255,7 @@ class User_roles extends VS_Controller
     }
 
     public function isActiveSetter($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         if($id){
 
@@ -280,9 +273,9 @@ class User_roles extends VS_Controller
     }
 
     public function PermissionsForm($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+
+        if(!isAllowedUpdateModule()){die();}
+
         $vData = new stdClass();
 
         getControllerList();
@@ -304,9 +297,9 @@ class User_roles extends VS_Controller
     }
 
     public function updatePermissions($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+
+        if(!isAllowedUpdateModule()){die();}
+
         $permissions = json_encode($this->input->post("permissions"));
 
         $update = $this->UserRoleModel->update(

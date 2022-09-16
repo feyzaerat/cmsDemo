@@ -13,9 +13,7 @@ class Services extends VS_Controller
 
         $this->load->model("ServiceModel");
 
-       if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+       if(!getActiveUser()){redirect(base_url("Login"));}
 
 
     }
@@ -53,9 +51,7 @@ class Services extends VS_Controller
 
     public function save(){
 
-        if(!isAllowedWriteModule()){
-            die();
-        }
+               if(!isAllowedWriteModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -208,9 +204,8 @@ class Services extends VS_Controller
     }
 
     public function update($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+        if(!isAllowedUpdateModule()){die();}
+
         $this->load->library("form_validation");
 
 
@@ -245,12 +240,12 @@ class Services extends VS_Controller
                     $uploadedFile = $this->upload->data("file_name");
 
                     $data = array(
-                        "title" => $this->input->post("title"),
-                        "description" => $this->input->post("description"),
-                        "url" => convertToSEO($this->input->post("title")),
-                        "img_url" => $uploadedFile,
-                        "updatedAt"     => date("Y-m-d H:i:s"),
-                        "updatedBy_id"  => $user->id,
+                        "title"              => $this->input->post("title"),
+                        "description"        => $this->input->post("description"),
+                        "url"                => convertToSEO($this->input->post("title")),
+                        "img_url"            => $uploadedFile,
+                        "updatedAt"          => date("Y-m-d H:i:s"),
+                        "updatedBy_id"       => $user->id,
                         "updated_ip_address" => $this->input->ip_address()
 
                     );
@@ -299,12 +294,12 @@ class Services extends VS_Controller
 
                 $alert = array(
                     "title" => lang('failed'),
-                    "text" => lang('a-problem-occurred-during-the-update'),
-                    "type" => "error"
+                    "text"  => lang('a-problem-occurred-during-the-update'),
+                    "type"  => "error"
                 );
             }
 
-            // The process of writing the Result of the Action to the Session...
+
 
             $this->session->set_flashdata("alert", $alert);
 
@@ -363,9 +358,8 @@ class Services extends VS_Controller
     }
 
     public function isActiveSetter($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+        if(!isAllowedUpdateModule()){die();}
+
         if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
@@ -382,9 +376,8 @@ class Services extends VS_Controller
     }
 
     public function rankSetter(){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+
+        if(!isAllowedUpdateModule()){die();}
 
         $data = $this->input->post("data");
 

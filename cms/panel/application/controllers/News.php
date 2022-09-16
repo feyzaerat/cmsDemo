@@ -13,9 +13,7 @@ class News extends VS_Controller
 
         $this->load->model("NewsModel");
 
-        if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+        if(!getActiveUser()){redirect(base_url("Login"));}
 
 
     }
@@ -52,9 +50,7 @@ class News extends VS_Controller
     }
 
     public function save(){
-        if(!isAllowedWriteModule()){
-            die();
-        }
+               if(!isAllowedWriteModule()){die();}
         $this->load->library("form_validation");
 
         $newsType = $this->input->post("news_type");
@@ -162,16 +158,16 @@ class News extends VS_Controller
               $user = getActiveUser();
 
               $data = array(
-                  "title"         => $this->input->post("title"),
-                  "description"   => $this->input->post("description"),
-                  "news_type"     => $newsType,
-                  "url"           => convertToSEO($this->input->post("title")),
-                  "img_url"       => "#",
-                  "video_url"     => $this->input->post("video_url"),
-                  "rank"          => 0,
-                  "isActive"      => 1,
-                  "createdAt"     => date("Y-m-d H:i:s"),
-                  "createdBy_id"    => $user->id,
+                  "title"              => $this->input->post("title"),
+                  "description"        => $this->input->post("description"),
+                  "news_type"          => $newsType,
+                  "url"                => convertToSEO($this->input->post("title")),
+                  "img_url"            => "#",
+                  "video_url"          => $this->input->post("video_url"),
+                  "rank"               => 0,
+                  "isActive"           => 1,
+                  "createdAt"          => date("Y-m-d H:i:s"),
+                  "createdBy_id"       => $user->id,
                   "created_ip_address" => $this->input->ip_address()
               );
 
@@ -191,8 +187,8 @@ class News extends VS_Controller
 
                 $alert = array(
                     "title" => lang('failed'),
-                    "type" => "error",
-                    "text" => lang('there-is-a-problem')
+                    "type"  => "error",
+                    "text"  => lang('there-is-a-problem')
 
                 );
 
@@ -242,9 +238,7 @@ class News extends VS_Controller
     }
 
     public function update($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         $this->load->library("form_validation");
 
         
@@ -305,13 +299,13 @@ class News extends VS_Controller
 
                         $alert = array(
                             "title" => lang('failed'),
-                            "text" => lang('there-was-a-problem-loading-image'),
-                            "type" => "error"
+                            "text"  => lang('there-was-a-problem-loading-image'),
+                            "type"  => "error"
                         );
 
                         $this->session->set_flashdata("alert", $alert);
 
-                        redirect(base_url("News/update_form/$id"));
+                        redirect(base_url("News/updateForm/$id"));
 
                         die();
 
@@ -320,10 +314,10 @@ class News extends VS_Controller
                 } else {
 
                     $data = array(
-                        "title" => $this->input->post("title"),
+                        "title"       => $this->input->post("title"),
                         "description" => $this->input->post("description"),
-                        "url" => convertToSEO($this->input->post("title")),
-                        "updatedAt"     => date("Y-m-d H:i:s")
+                        "url"         => convertToSEO($this->input->post("title")),
+                        "updatedAt"   => date("Y-m-d H:i:s")
                     );
 
                 }
@@ -364,7 +358,6 @@ class News extends VS_Controller
                 );
             }
 
-            // The process of writing the Result of the Action to the Session...
 
             $this->session->set_flashdata("alert", $alert);
 
@@ -426,9 +419,7 @@ class News extends VS_Controller
 
     public function isActiveSetter($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
@@ -446,9 +437,7 @@ class News extends VS_Controller
 
     public function rankSetter(){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         $data = $this->input->post("data");
 
         parse_str($data, $order);

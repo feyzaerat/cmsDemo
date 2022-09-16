@@ -1,1 +1,1 @@
-<link rel="stylesheet" href="<?php echo base_url("assets"); ?>/css/iziToast.min.css">
+<link rel="stylesheet" href="<?php echo cdn()."/";?>assets/css/iziToast.min.css">

@@ -81,13 +81,13 @@ class Login extends CI_Controller {
               setUserRoles();
 
               $this->LogModel->add(array(
-                  'user_id' => $user->id,
-                  'type'    => 'get',
-                  'type_id' => 1,
-                  'rank' => 0,
-                  'token'   => 'Login',
+                  'user_id'              => $user->id,
+                  'type'                 => 'get',
+                  'type_id'              => 1,
+                  'rank'                 => 0,
+                  'token'                => 'Login',
                   'created_ip_address'   => $this->input->ip_address(),
-                  'comment'   => $user->user_name . ' Logged in'
+                  'comment'              => $user->user_name . ' Logged in'
               ));
               $this->session->set_userdata("user",$user);
               $this->session->set_flashdata("alert", $alert);
@@ -96,6 +96,8 @@ class Login extends CI_Controller {
 
           }
           else{
+
+
 
               $alert = array(
                   "title" => lang('failed'),
@@ -120,13 +122,13 @@ class Login extends CI_Controller {
         $user=getActiveUser();
 
         $this->LogModel->add(array(
-            'user_id' => $user->id,
-            'type'    => 'get',
-            'type_id' => 1,
-            'rank' => 0,
-            'token'   => 'Login',
+            'user_id'              => $user->id,
+            'type'                 => 'get',
+            'type_id'              => 1,
+            'rank'                 => 0,
+            'token'                => 'Login',
             'created_ip_address'   => $this->input->ip_address(),
-            'comment'   => $user->user_name . ' Logged out '
+            'comment'              => $user->user_name . ' Logged out '
         ));
 
 
@@ -134,133 +136,7 @@ class Login extends CI_Controller {
         redirect(base_url("Login"));
 
     }
-   /* public function resetPass(){
-        $this->load->helper("string");
 
-        $this->load->library("form_validation");
-
-
-        $this->form_validation->set_rules("email", "E-posta Adresi", "required|trim|valid_email");
-
-
-        $this->form_validation->set_message(
-            array(
-                "required"  => "<b>{field}</b>". lang('must-be-filled'),
-                "valid_email" => lang('enter-valid-mail'),
-
-            )
-        );
-
-        if($this->form_validation->run()==FALSE){
-
-            $vData = new stdClass();
-            $vData->vFolder = $this->vFolder;
-            $vData->subFolder = "forget_password";
-            $vData->form_error = true;
-
-            $this->load->view("{$vData->vFolder}/{$vData->subFolder}/index", $vData);
-
-        }
-        else {
-
-            $user = $this->UserModel->get(
-                array(
-                    "isActive" => 1,
-                    "email" => $this->input->post("email")
-                )
-            );
-            $mail = $this->EmailSettingModel->get(
-                array(
-                    "isActive" => 1
-                )
-            );
-
-            if ($user) {
-
-                $this->load->helper("string");
-                $temp_password = random_string();
-
-                $config=array(
-                    "protocol" => $mail->protocol,
-                    "smtp_host" => $mail->host,
-                    "smtp_port" => $mail->port,
-                    "smtp_user" => $mail->user,
-                    // "smtp_pass" => "kdvudffrlkbeyojp",
-                    "smtp_pass" => $mail->password,
-                    "starttls" => true,
-                    "charset" => "utf-8",
-                    "mailtype" => "html",
-                    "wordwrap" => true,
-                    "newline" => "\r\n",
-
-                );
-                $this->load->library("email",$config);
-
-                $this->email->from("admin@feyzaerat.com", "CMS ADMIN DASHBOARD");
-                $this->email->to("feyzakrnfl@gmail.com");
-                $this->email->subject("Şifremi Unuttum");
-                $this->email->message(" FKE Panele geçici olarak <b>{$temp_password}</b> şifresiyle giriş yapabilirsiniz");
-
-                $send=$this->email->send();
-
-                if ($send) {
-
-                    $this->UserModel->update(
-                        array(
-                            "id" => $user->id
-                        ),
-                        array(
-                            "password" => md5($temp_password)
-                        )
-                    );
-
-                    $alert = array(
-                        "title" =>lang('successful'),
-                        "text" => "Şifreniz Başarılı Bir Şekilde Sıfırlandı. Lütfen E-Posta Kutunuzu Kontrol Ediniz",
-                        "type" => "success"
-                    );
-
-                    $this->session->set_flashdata("alert", $alert);
-                    redirect(base_url("Login"));
-                    die();
-
-
-                } else {
-
-                    //echo $this->email->print_debugger();
-                    //die();
-
-                    $alert = array(
-                        "title" => lang('failed'),
-                        "text" => "E-Posta Gönderilirken Bir Problem Oluştu !",
-                        "type" => "error"
-                    );
-                    //echo $this->email->print_debugger();
-                   // die();
-                    $this->session->set_flashdata("alert", $alert);
-                    redirect(base_url("forget_password"));
-                    die();
-
-
-                }
-
-
-            } else {
-
-                $alert = array(
-                    "title" => lang('failed'),
-                    "text" => "Böyle bir kullanıcı bulunamadı!!!",
-                    "type" => "error"
-                );
-
-                $this->session->set_flashdata("alert", $alert);
-                redirect(base_url("forget_password"));
-
-            }
-
-        }
-
-    }*/
     public function forgetPass(){
         if(getActiveUser()){
 
@@ -289,7 +165,6 @@ class Login extends CI_Controller {
             array(
                 "required"  => "<b>{field}</b>". lang('must-be-filled'),
                 "valid_email" => lang('enter-valid-mail'),
-
             )
         );
 
@@ -317,7 +192,7 @@ class Login extends CI_Controller {
               $this->load->helper("string");
               $temp_password = random_string();
 
-              $send=send_email($user->email,"Reset Password", "
+              $send=send_email($user->email,lang('reset-password'), "
       <!doctype html>
       <html lang='en'>
       <head>
@@ -481,17 +356,8 @@ class Login extends CI_Controller {
       </html>
               ");
 
-
-
-
-
-
-
-
-
-
               if($send){
-                  echo "E-posta başarılı bir şekilde gonderilmiştir..";
+                  echo lang('sent-mail-success');
 
                   $this->UserModel->update(
                       array(
@@ -504,7 +370,7 @@ class Login extends CI_Controller {
 
                   $alert = array(
                       "title" =>lang('successful'),
-                      "text" => "Şifreniz Başarılı Bir Şekilde Sıfırlandı. Lütfen E-Posta Kutunuzu Kontrol Ediniz",
+                      "text" => lang('sent-reset-mail-success'),
                       "type"  => "success"
                   );
 
@@ -515,11 +381,11 @@ class Login extends CI_Controller {
 
               } else {
 
-                  echo $this->email->print_debugger();
-                  die();
+                  //echo $this->email->print_debugger();
+                  //die();
                   $alert = array(
                       "title" => lang('failed'),
-                      "text" => "E-Posta Gönderilirken Bir Problem Oluştu !",
+                      "text" => lang('sent-failed'),
                       "type"  => "error"
                   );
 
@@ -535,7 +401,7 @@ class Login extends CI_Controller {
 
               $alert = array(
                   "title" => lang('failed'),
-                  "text" => "Böyle bir kullanıcı bulunamadı!!!",
+                  "text" => lang('no-such-user'),
                   "type"  => "error"
               );
 

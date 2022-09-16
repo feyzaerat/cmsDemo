@@ -16,9 +16,7 @@ class Brands extends VS_Controller
         $this->load->model("BrandModel");
         $this->load->model("LogModel");
 
-        if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+        if(!getActiveUser()){redirect(base_url("Login"));}
 
 
     }
@@ -55,9 +53,7 @@ class Brands extends VS_Controller
 
     public function save(){
 
-        if(!isAllowedWriteModule()){
-            die();
-        }
+               if(!isAllowedWriteModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -121,18 +117,6 @@ class Brands extends VS_Controller
 
                     ));
 
-
-
-
-                $user=getActiveUser();
-
-                $this->LogModel->add(array(
-                    'user_id' => $user->id,
-                    'type'    => 'post',
-                    'type_id' => 2,
-                    'token'   => 'Add',
-                    'comment'   => $user->user_name . ' added a Brand '
-                ));
 
                 if($insert){
 
@@ -221,9 +205,7 @@ class Brands extends VS_Controller
 
     public function update($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $this->load->library("form_validation");
 
@@ -266,17 +248,6 @@ class Brands extends VS_Controller
                         "updated_ip_address" => $this->input->ip_address()
 
                     );
-                    $user=getActiveUser();
-
-                    $this->LogModel->add(array(
-                        'user_id' => $user->id,
-                        'type'    => 'post',
-                        'type_id' => 2,
-                        'token'   => 'Update',
-                        'comment'   => $user->user_name . ' updated a Brand ',
-                        "updated_ip_address" => $this->input->ip_address()
-                    ));
-
 
                 } else {
 
@@ -304,15 +275,7 @@ class Brands extends VS_Controller
 
 
                 );
-                $user=getActiveUser();
 
-                $this->LogModel->add(array(
-                    'user_id' => $user->id,
-                    'type'    => 'post',
-                    'type_id' => 3,
-                    'token'   => 'Update',
-                    'comment'   => $user->user_name . ' updated a Brand ',
-                ));
             }
 
             $update = $this->BrandModel->update(array("id" => $id), $data);
@@ -395,9 +358,7 @@ class Brands extends VS_Controller
     }
 
     public function isActiveSetter($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
@@ -414,9 +375,7 @@ class Brands extends VS_Controller
     }
 
     public function rankSetter(){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $data = $this->input->post("data");
 

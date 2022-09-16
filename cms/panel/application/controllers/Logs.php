@@ -14,9 +14,7 @@ class Logs extends VS_Controller
         $this->load->model("LogModel");
         $this->load->library("Logger");
 
-       if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+       if(!getActiveUser()){redirect(base_url("Login"));}
 
 
     }

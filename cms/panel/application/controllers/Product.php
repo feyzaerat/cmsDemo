@@ -14,9 +14,7 @@ class Product extends VS_Controller
         $this->load->model("ProductModel");
         $this->load->model("ProductimageModel");
 
-       if(!getActiveUser()){
-            redirect(base_url("Login"));
-        }
+       if(!getActiveUser()){redirect(base_url("Login"));}
 
     }
 
@@ -148,9 +146,7 @@ class Product extends VS_Controller
 
     public function update($id){
 
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         $this->load->library("form_validation");
 
         $this->form_validation->set_rules("title", lang('title'), "required|trim");
@@ -186,7 +182,7 @@ class Product extends VS_Controller
                 $alert = array(
                     "title" => lang('successful'),
                     "type" => "success",
-                    "text" => "Kayıt başarılı bir şekilde güncellendi !"
+                    "text" => lang('update-successful'),
                 );
 
             } else {
@@ -290,9 +286,7 @@ class Product extends VS_Controller
     }
 
     public function isActiveSetter($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
@@ -309,9 +303,7 @@ class Product extends VS_Controller
     }
 
     public function imageIsActiveSetter($id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
@@ -328,9 +320,7 @@ class Product extends VS_Controller
     }
 
     public function isCoverSetter($id, $parent_id){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
         if($id && $parent_id){
 
             $isCover = ($this->input->post("data") === "true") ? 1 : 0;
@@ -375,9 +365,7 @@ class Product extends VS_Controller
     }
 
     public function rankSetter(){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $data = $this->input->post("data");
 
@@ -402,9 +390,7 @@ class Product extends VS_Controller
     }
 
     public function imageRankSetter(){
-        if(!isAllowedUpdateModule()){
-            die();
-        }
+               if(!isAllowedUpdateModule()){die();}
 
         $data = $this->input->post("data");
 

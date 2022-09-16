@@ -10,7 +10,7 @@ var LIBS = {
 		"../panel/assets/libs/misc/flot/jquery.flot.categories.min.js"
 	],
 	chart: [
-		'../panel/assets/libs/misc/echarts/build/dist/echarts-all.js',
+		'../panel/assets/libs/misc/echarts/build/dist/jquery.echarts.js',
 		'../panel/assets/libs/misc/echarts/build/dist/theme.js',
 		'../panel/assets/libs/misc/echarts/build/dist/jquery.echarts.js'
 	],

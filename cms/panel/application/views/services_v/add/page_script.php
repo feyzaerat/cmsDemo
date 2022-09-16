@@ -1,1 +1,1 @@
-<script src="<?php echo base_url("assets"); ?>/js/news.js"></script>
+<script src="<?php echo cdn()."/";?>assets/js/news.js"></script>
