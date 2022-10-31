@@ -14,6 +14,9 @@ class Language extends CI_Controller {
         }elseif ($langCode  ==  'tr'){
             $lang->langCode =   'tr';
             $lang->language =   'turkish';
+        }elseif ($langCode  ==  'de'){
+            $lang->langCode =   'de';
+            $lang->language =   'german';
         }
         $this->session->set_userdata('lang', $lang);
         redirect($_SERVER['HTTP_REFERER']);

@@ -1,4 +1,5 @@
 <?php
+$alert = new Alert();
 
 $alert = $this->session->userdata("alert");
 

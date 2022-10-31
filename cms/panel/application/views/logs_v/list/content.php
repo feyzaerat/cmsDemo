@@ -10,7 +10,7 @@
         <div class="widget  p-b-xl " style="overflow-x:auto;padding: 5vw 1vw 1vw 1vw;">
                 <?php if(empty($items)) { ?>
                 <div class="alert alert-info text-center">
-                    <p><?php echo lang('no-data')?> <?php echo lang('for-add')?> </p>
+                    <p><?php echo lang('no-data')?></p>
                 </div>
                 <?php } else { ?>
               <div class="table-responsive" style="padding-bottom: 3vw;">

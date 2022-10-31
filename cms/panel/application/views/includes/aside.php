@@ -35,7 +35,7 @@
                                 <li>
                                     <a class="text-color" href="<?php echo base_url("Settings")?>">
                                         <span class="m-r-xs"><i class="fa fa-gear"></i></span>
-                                        <span><?php echo lang('Settings')?></span>
+                                        <span><?php echo lang('settings')?></span>
                                     </a>
                                 </li>
 

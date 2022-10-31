@@ -35,7 +35,7 @@ $lang['there-is-a-problem']      =   'Ooppss ! There is a problem !';
 $lang['there-was-a-problem-loading-image']      =   'Ooppss ! There was a problem Loading the image !';
 $lang['there-was-a-problem-occurred-during-the-update']      =   'Ooppss ! There was a problem occurred during the update !';
 $lang['folder-content']      =   'Ooppss ! Folder content is not empty !';
-$lang['folder-path-name']      =   'Folder Path / Name !';
+$lang['folder-path-name']      =   'Folder Path / Name';
 
 
 
@@ -169,6 +169,7 @@ $lang['date']           =   'Date';
 $lang['ip-address']     =   'IP Address';
 $lang['password']       =   'Password';
 $lang['choose-a-photo'] =   'Choose a Photo';
+$lang['choose-a-news-type'] =   'Choose a News Type';
 $lang['enter-title']    =   'Enter Title';
 $lang['product-detail'] =   ' / Details of Product';
 $lang['back-to-product-list'] =   ' Back to the Product List';

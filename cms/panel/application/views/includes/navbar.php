@@ -68,7 +68,6 @@
                                 <img class="mr-2"
                                      src="<?=base_url('assets/images/lang/tr.svg')?>"
                                      style="height:20px"> <?=lang('langTurkish')?>
-
                             </a>
                         </li>
                         <li>
@@ -78,18 +77,19 @@
                                      style="height:20px"> <?=lang('langEnglish')?>
                             </a>
                         </li>
-
+                        <li>
+                            <a class="text-color" href="<?=base_url('language/change/'.'de')?>">
+                                <img class="mr-2"
+                                     src="<?=base_url('assets/images/lang/de.svg')?>"
+                                     style="height:20px"> <?=lang('langGerman')?>
+                            </a>
+                        </li>
                     </ul>
                 </li>
+                <li class="">
+                    <a href="<?php echo base_url('Logout')?>"><i class="m-r-md  fa fa-power-off"></i></a>
 
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-hc-lg zmdi-account"></i></a>
-                    <ul class="dropdown-menu animated flipInY">
-                        <li><a href="<?php echo base_url('profile')?>"><i class="zmdi m-r-md zmdi-hc-lg zmdi-account-box"></i><?php echo lang('my-profile')?></a></li>
-                        <li><a href="<?php echo base_url('Logout')?>"><i class="m-r-md  fa fa-power-off"></i><?php echo lang('logout')?></a></li>
-                    </ul>
                 </li>
-
             </ul>
 
 

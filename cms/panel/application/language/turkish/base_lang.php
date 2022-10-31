@@ -35,7 +35,7 @@ $lang['there-is-a-problem']      =   'Dikkat ! Bir Sorun Oluştu ..';
 $lang['there-was-a-problem-loading-image']      =   'Dikkat ! Görsel Yükleme Sırasında Bir Sorun Oluştu !';
 $lang['there-was-a-problem-occurred-during-the-update']      =   'Dikkat !  Güncelleme Sırasında Bir Sorun Oluştu !';
 $lang['folder-content']      =   'Ooppss ! Klasör İçeriği Boş Değil !';
-$lang['folder-path-name']      =   'Dosya Yolu / Adı !';
+$lang['folder-path-name']      =   'Dosya Yolu / Adı';
 
 
 
@@ -173,6 +173,7 @@ $lang['date']           =   'Tarih';
 $lang['ip-address']     =   'IP Adresi';
 $lang['password']       =   'Şifre';
 $lang['choose-a-photo'] =   'Görsel Seçiniz';
+$lang['choose-a-news-type'] =   'Haber Türünü Seçiniz !';
 $lang['enter-title']    =   'Başlığı Giriniz';
 $lang['product-detail'] =   'Ürün Detayı';
 $lang['back-to-product-list'] =   'Ürün Listesine Geri Gön';
